@@ -8,26 +8,27 @@ using ChatServer.Net.IO;
 
 namespace ChatServer
 {
-     class Client
+    class Client
     {
-
         public string Username { get; set; }
         public Guid UID { get; set; }
-        
         public TcpClient ClientSocket { get; set; }
-
-
-        _packetReader = _packetReader;
+        
+        PacketReader _packetReader;
         public Client(TcpClient client)
         {
             ClientSocket = client;
             UID = Guid.NewGuid();
 
-            var OpCode = new byte[1];
+            _packetReader = new PacketReader(ClientSocket.GetStream());
 
 
 
-            Console.WriteLine($"[{DateTime.Now}]: Client has connected with the username:  {Username}" );
+            var opcode = _packetReader.ReadByte();
+
+            Username = _packetReader.ReadMessage();
+
+            Console.WriteLine($"[{DateTime.Now}]: Client has connected with the username: {Username}");
         }
     }
 }

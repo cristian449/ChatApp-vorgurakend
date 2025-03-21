@@ -7,8 +7,8 @@
         xmlns:viewmodel="clr-namespace:ChatClient.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="450" 
-        Width="800">
+        Height="474" 
+        Width="816">
 
     <Window.DataContext>
 
@@ -34,8 +34,18 @@
                     Command="{Binding ConnectToServerCommand}"/>
 
 
-            <ListView />
-            
+            <ListView ItemsSource="{Binding Users}">
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Username}"/>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>
+
         </DockPanel>
 
         <StackPanel Grid.Column="1">
@@ -48,9 +58,11 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="55"
                          Width="545"
-                         VerticalContentAlignment="Center"/>
+                         VerticalContentAlignment="Center"
+                         Text="{Binding Message, UpdateSourceTrigger= PropertyChanged}"/>
                 <Button Width="55"
-                        Content="Send"/>
+                        Content="Send"
+                        Command="{Binding SendMessageCommand}"/>
             </StackPanel>
 
 

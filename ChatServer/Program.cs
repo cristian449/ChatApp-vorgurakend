@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using ChatServer.Net.IO;
 
 namespace ChatServer
 {
@@ -16,17 +17,35 @@ namespace ChatServer
 
             while (true)
             {
-                
+
                 var client = new Client(_listner.AcceptTcpClient());
                 _users.Add(client);
 
                 //Broadcase the connection to everyone on the server
-            }  
-           
-            
+
+                BroadCastConnection();
+            }
+
+
             //Console.WriteLine("Client Has Connected YAY");
         }
-    }
 
+
+        static void BroadCastConnection()
+        {
+            foreach (var user in _users)
+            {
+                foreach (var usr in _users)
+                {
+                    var broadcastPacket = new PacketBuilder();
+                    broadcastPacket.WriteOpCode(1);
+                    broadcastPacket.WriteMessage(usr.Username);
+                    broadcastPacket.WriteMessage(usr.UID.ToString());
+                    user.ClientSocket.Client.Send(broadcastPacket.GetPacketBytes());
+                }
+            }
+
+        }
+    }
 
 }
