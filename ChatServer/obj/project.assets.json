@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elenp\\Documents\\GitHub\\ChatApp\\ChatServer\\ChatServer.csproj",
+      "projectUniqueName": "C:\\Users\\elenp\\Documents\\GitHub\\ChatApp-vorgurakend\\ChatServer\\ChatServer.csproj",
       "projectName": "ChatServer",
-      "projectPath": "C:\\Users\\elenp\\Documents\\GitHub\\ChatApp\\ChatServer\\ChatServer.csproj",
+      "projectPath": "C:\\Users\\elenp\\Documents\\GitHub\\ChatApp-vorgurakend\\ChatServer\\ChatServer.csproj",
       "packagesPath": "C:\\Users\\elenp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elenp\\Documents\\GitHub\\ChatApp\\ChatServer\\obj\\",
+      "outputPath": "C:\\Users\\elenp\\Documents\\GitHub\\ChatApp-vorgurakend\\ChatServer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

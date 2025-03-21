@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\elenp\Documents\GitHub\ChatApp\ChatApp\obj\Debug\net8.0-windows\
+C:\Users\elenp\Documents\GitHub\ChatApp-vorgurakend\ChatApp\obj\Debug\net8.0-windows\
 ChatClient
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\elenp\Documents\GitHub\ChatApp\ChatApp\App.xaml
+C:\Users\elenp\Documents\GitHub\ChatApp-vorgurakend\ChatApp\App.xaml
 11121423476
 
-9555400348
+10740244236
 198-1431420039
 MVVM\View\MainWindow.xaml;
 
-True
+False
 

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using ChatClient.Net.IO;
 
 namespace ChatClient.Net
 {
     class Server
     {
         TcpClient _client;
+        PacketBuilder _packetBuilder;
         public Server ()
             {
 
@@ -21,6 +23,10 @@ namespace ChatClient.Net
             if (!_client.Connected)
             {
                 _client.Connect("127.0.0.1", 8000);
+                var ConnectPacket = new PacketBuilder();
+                ConnectPacket.WriteOpCode(0);
+                ConnectPacket.WriteString(username);
+                _client.Client.Send(ConnectPacket.GetPacketBytes());
             }
         }
     }
