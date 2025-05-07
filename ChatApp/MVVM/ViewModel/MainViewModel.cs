@@ -14,6 +14,8 @@ namespace ChatClient.MVVM.ViewModel
     class MainViewModel
     {
 
+        //For some reason send message stopped working and doesnt work
+
         public  ObservableCollection<UserModel>  Users { get; set; }
 
         public ObservableCollection<String> Messages { get; set; }
@@ -35,7 +37,13 @@ namespace ChatClient.MVVM.ViewModel
             _server.userdisconnectevent += RemoveUser;
             ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
 
-            SendMessageCommand = new RelayCommand(o => _server.ConnectToServer(Message), o => !string.IsNullOrEmpty(Message));
+            SendMessageCommand = new RelayCommand(o =>
+            {
+                _server.SendMessageToServer(Message);
+                Message = string.Empty;
+            }, o => !string.IsNullOrEmpty(Message));
+
+
         }
 
         private void RemoveUser()

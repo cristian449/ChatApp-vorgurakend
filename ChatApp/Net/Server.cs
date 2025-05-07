@@ -88,12 +88,11 @@ namespace ChatClient.Net
 
         public void SendMessageToServer(string message)
         {
-            var messagePacket = new PacketBuilder();
-            messagePacket.WriteOpCode(5);
-            messagePacket.WriteMessage(message);
-            _client.Client.Send(messagePacket.GetPacketBytes());
-            
-
+            var msgPacket = new PacketBuilder();
+            msgPacket.WriteOpCode(5); 
+            msgPacket.WriteMessage(message);
+            _client.Client.Send(msgPacket.GetPacketBytes());
         }
+
     }
 }
