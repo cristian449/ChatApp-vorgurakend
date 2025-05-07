@@ -15,9 +15,10 @@ namespace ChatClient.Net
         public PacketReader PacketReader;
 
         public event Action connectedEvent;
+        public event Action msgrecievedEvent;
+        public event Action userdisconnectevent;
 
-
-        public Server ()
+        public Server()
             {
 
             _client = new TcpClient();
@@ -58,6 +59,16 @@ namespace ChatClient.Net
                     {
                         case 1:
                             connectedEvent?.Invoke();
+
+                            break;
+
+                        case 5:
+                            msgrecievedEvent?.Invoke();
+
+                            break;
+
+                        case 10:
+                            userdisconnectevent?.Invoke();
 
                             break;
 

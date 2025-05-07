@@ -50,7 +50,8 @@
 
         <StackPanel Grid.Column="1">
 
-            <ListView Height="380"/>
+            <ListView Height="380"
+                      ItemsSource="{Binding Messages}"/>
 
             <!--<TextBox Height="55"
                      VerticalContentAlignment="Center"/>-->
@@ -59,7 +60,7 @@
                 <TextBox Height="55"
                          Width="545"
                          VerticalContentAlignment="Center"
-                         Text="{Binding Message, UpdateSourceTrigger= PropertyChanged}"/>
+                         Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Width="55"
                         Content="Send"
                         Command="{Binding SendMessageCommand}"/>

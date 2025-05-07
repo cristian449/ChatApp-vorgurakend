@@ -65,8 +65,12 @@ namespace ChatServer
             foreach (var user in _users)
             {
                 var broadcastPacket = new PacketBuilder();
-                
+                broadcastPacket.WriteOpCode(10);
+                broadcastPacket.WriteMessage(uid);
+                user.ClientSocket.Client.Send(broadcastPacket.GetPacketBytes());
             }
+
+            BroadCastMessage($"User {disconnectUser.Username} has disconnected");
         }
     }
 

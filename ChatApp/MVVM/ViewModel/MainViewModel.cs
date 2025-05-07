@@ -15,19 +15,43 @@ namespace ChatClient.MVVM.ViewModel
     {
 
         public  ObservableCollection<UserModel>  Users { get; set; }
+
+        public ObservableCollection<String> Messages { get; set; }
         public RelayCommand ConnectToServerCommand { get; set; }
         public RelayCommand SendMessageCommand { get; set; }
         public string Username { get; set; }
         public string Message { get; set; }
+
+
         private Server _server;
         public MainViewModel()
+
         {
             Users = new ObservableCollection<UserModel>();
+            Messages = new ObservableCollection<String>();
             _server = new Server();
             _server.connectedEvent += UserConnected;
+            _server.msgrecievedEvent += MessageRecieved;
+            _server.userdisconnectevent += RemoveUser;
             ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
 
             SendMessageCommand = new RelayCommand(o => _server.ConnectToServer(Message), o => !string.IsNullOrEmpty(Message));
+        }
+
+        private void RemoveUser()
+        {
+            var uid = _server.PacketReader.ReadMessage();
+            var user = Users.Where(x => x.UID == uid).FirstOrDefault();
+            Application.Current.Dispatcher.Invoke(() => Users.Remove(user));
+        }
+
+        private void MessageRecieved()
+        {
+            var msg = _server.PacketReader.ReadMessage();
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Messages.Add(msg);
+            });
         }
 
         private  void UserConnected()
